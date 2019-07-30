@@ -46,6 +46,7 @@ Documentation for the kitty terminal emulator
 %setup -q
 
 %build
+export CC=%{__cc}
 %{__python3} setup.py linux-package --debug --libdir-name %{_lib}
 
 %install
