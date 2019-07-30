@@ -9,7 +9,6 @@ Group: System/X11
 License: GPLv3
 URL: https://github.com/kovidgoyal/kitty
 Source0: https://github.com/kovidgoyal/kitty/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Source1: %{name}.1
 BuildRequires:  python3-devel
 BuildRequires:  python3-sphinx
 BuildRequires:  imagemagick-devel
