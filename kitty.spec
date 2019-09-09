@@ -3,8 +3,8 @@
 
 Name: kitty
 Summary: Fast, featureful, GPU based terminal emulator
-Version: 0.14.3
-Release: 1
+Version:	0.14.4
+Release:	1
 Group: System/X11
 License: GPLv3
 URL: https://github.com/kovidgoyal/kitty
