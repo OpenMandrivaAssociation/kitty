@@ -3,12 +3,12 @@
 
 Name: kitty
 Summary: Fast, featureful, GPU based terminal emulator
-Version:	0.16.0
+Version:	0.17.1
 Release:	1
 Group: System/X11
 License: GPLv3
 URL: https://github.com/kovidgoyal/kitty
-Source0: https://github.com/kovidgoyal/kitty/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0: https://github.com/kovidgoyal/kitty/archive/v%{version}/%{name}-%{version}.tar.gz
 BuildRequires:  python3-devel
 BuildRequires:  python3-sphinx
 BuildRequires:  imagemagick-devel
