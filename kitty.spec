@@ -16,6 +16,7 @@ BuildRequires:  pkgconfig(gl)
 BuildRequires:  fontconfig-devel
 BuildRequires:  freetype-devel
 BuildRequires:  pkgconfig(harfbuzz)
+BuildRequires:  pkgconfig(lcms2)
 BuildRequires:  pkgconfig(xcursor)
 BuildRequires:  pkgconfig(xi)
 BuildRequires:  pkgconfig(xinerama)
