@@ -3,7 +3,7 @@
 
 Name: kitty
 Summary: Fast, featureful, GPU based terminal emulator
-Version:	0.18.3
+Version:	0.19.0
 Release:	1
 Group: System/X11
 License: GPLv3
