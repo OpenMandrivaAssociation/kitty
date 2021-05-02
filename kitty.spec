@@ -62,6 +62,7 @@ cp -a linux-package/* %{buildroot}/usr
 %{_datadir}/icons/hicolor/256x256/apps/%{name}.png
 %{_datadir}/terminfo/x/xterm-kitty
 %{_mandir}/man1/%{name}.1.*
+%{_mandir}/man1/kitty.conf.5.*
 
 %files doc
 %doc LICENSE *.md *.rst *.asciidoc
