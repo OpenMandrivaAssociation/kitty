@@ -1,4 +1,4 @@
-%global debug_package %{nil}
+#global debug_package %{nil}
 %global __python %{__python3}
 
 Name: kitty
