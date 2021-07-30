@@ -11,6 +11,7 @@ URL: https://github.com/kovidgoyal/kitty
 Source0: https://github.com/kovidgoyal/kitty/archive/v%{version}/%{name}-%{version}.tar.gz
 BuildRequires:  python-devel
 BuildRequires:  python-sphinx
+BuildRequires:  python3dist(sphinx-copybutton)
 BuildRequires:  imagemagick-devel
 BuildRequires:  pkgconfig(gl)
 BuildRequires:  fontconfig-devel
