@@ -12,6 +12,7 @@ Source0: https://github.com/kovidgoyal/kitty/archive/v%{version}/%{name}-%{versi
 BuildRequires:  python-devel
 BuildRequires:  python-sphinx
 BuildRequires:  python3dist(sphinx-copybutton)
+BuildRequires:  python3dist(sphinx-inline-tabs)
 BuildRequires:  imagemagick-devel
 BuildRequires:  pkgconfig(gl)
 BuildRequires:  fontconfig-devel
