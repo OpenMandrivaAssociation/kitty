@@ -8,7 +8,7 @@ Release:	1
 Group: System/X11
 License: GPLv3
 URL: https://github.com/kovidgoyal/kitty
-Source0: https://github.com/kovidgoyal/kitty/archive/v%{version}/%{name}-%{version}.tar.gz
+Source0: https://github.com/kovidgoyal/kitty/archive/v%{version}/%{name}-%{version}.tar.xz
 BuildRequires:  python-devel
 BuildRequires:  python-sphinx
 BuildRequires:  python3dist(sphinx-copybutton)
