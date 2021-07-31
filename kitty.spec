@@ -8,7 +8,7 @@ Release:	1
 Group: System/X11
 License: GPLv3
 URL: https://github.com/kovidgoyal/kitty
-Source0: https://github.com/kovidgoyal/kitty/archive/v%{version}/%{name}-%{version}.tar.xz
+Source0: https://github.com/kovidgoyal/kitty/releases/download/v%{version}/kitty-%{version}.tar.xz
 BuildRequires:  python-devel
 BuildRequires:  python-sphinx
 BuildRequires:  python3dist(sphinx-copybutton)
@@ -62,6 +62,7 @@ cp -a linux-package/* %{buildroot}/usr
 %{_libdir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/256x256/apps/%{name}.png
+%{_iconsdir}/hicolor/scalable/apps/kitty.svg
 %{_datadir}/terminfo/x/xterm-kitty
 %{_mandir}/man1/%{name}.1.*
 %{_mandir}/man5/kitty.conf.5.*
