@@ -14,6 +14,7 @@ BuildRequires:  python-sphinx
 BuildRequires:  python3dist(sphinx-copybutton)
 BuildRequires:  python3dist(sphinx-inline-tabs)
 BuildRequires:  imagemagick-devel
+BuildRequires:  librsync-devel
 BuildRequires:  pkgconfig(gl)
 BuildRequires:  fontconfig-devel
 BuildRequires:  freetype-devel
