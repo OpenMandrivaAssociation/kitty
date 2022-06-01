@@ -64,6 +64,7 @@ cp -a linux-package/* %{buildroot}/usr
 %{_bindir}/%{name}
 %{_libdir}/%{name}
 %{_datadir}/applications/%{name}.desktop
+%{_datadir}/applications/kitty-open.desktop
 %{_datadir}/icons/hicolor/256x256/apps/%{name}.png
 %{_iconsdir}/hicolor/scalable/apps/kitty.svg
 %{_datadir}/terminfo/x/xterm-kitty
