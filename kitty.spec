@@ -1,14 +1,16 @@
-#global debug_package %{nil}
+%define _empty_manifest_terminate_build 0
 %global __python %{__python3}
 
 Name: kitty
 Summary: Fast, featureful, GPU based terminal emulator
-Version:	0.24.2
+Version:	0.25.1
 Release:	1
 Group: System/X11
 License: GPLv3
 URL: https://github.com/kovidgoyal/kitty
 Source0: https://github.com/kovidgoyal/kitty/releases/download/v%{version}/kitty-%{version}.tar.xz
+# Python 3.11 support
+Patch0: https://github.com/kovidgoyal/kitty/commit/0df9a5d5c53022a7e4588593e2782e8a8eca6de9.patch
 BuildRequires:  python-devel
 BuildRequires:  python-sphinx
 BuildRequires:  python3dist(sphinx-copybutton)
@@ -48,7 +50,7 @@ License:        GPLv3
 Documentation for the kitty terminal emulator
 
 %prep
-%setup -q
+%autosetup -p1
 
 %build
 export CC=%{__cc}
@@ -62,6 +64,7 @@ cp -a linux-package/* %{buildroot}/usr
 %{_bindir}/%{name}
 %{_libdir}/%{name}
 %{_datadir}/applications/%{name}.desktop
+%{_datadir}/applications/kitty-open.desktop
 %{_datadir}/icons/hicolor/256x256/apps/%{name}.png
 %{_iconsdir}/hicolor/scalable/apps/kitty.svg
 %{_datadir}/terminfo/x/xterm-kitty
