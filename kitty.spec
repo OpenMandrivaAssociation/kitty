@@ -53,7 +53,9 @@ Documentation for the kitty terminal emulator
 %autosetup -p1
 
 %build
-export CC=%{__cc}
+#export CC=%{__cc}
+export CC=gcc
+export CXX=g++
 %{__python3} setup.py linux-package --debug --libdir-name %{_lib}
 
 %install
