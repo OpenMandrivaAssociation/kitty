@@ -3,7 +3,7 @@
 
 Name: kitty
 Summary: Fast, featureful, GPU based terminal emulator
-Version:	0.26.2
+Version:	0.26.3
 Release:	1
 Group: System/X11
 License: GPLv3
@@ -54,8 +54,6 @@ Documentation for the kitty terminal emulator
 
 %build
 #export CC=%{__cc}
-export CC=gcc
-export CXX=g++
 %{__python3} setup.py linux-package --debug --libdir-name %{_lib}
 
 %install
