@@ -54,6 +54,11 @@ Documentation for the kitty terminal emulator
 
 %build
 #export CC=%{__cc}
+# The --debug option has been removed as it caused 
+# the app launcher to be improperly linked.
+# The problem it causes shows up in the fact that the kitty.conf file is
+# not generated although the app runs. Debug rpms are still produced.
+
 %{__python3} setup.py linux-package  --libdir-name %{_lib} 
 
 %install
