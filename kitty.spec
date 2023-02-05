@@ -68,6 +68,7 @@ cp -a linux-package/* %{buildroot}/usr
 
 %files
 %{_bindir}/%{name}
+%{_bindir}/kitten
 %{_libdir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/applications/kitty-open.desktop
