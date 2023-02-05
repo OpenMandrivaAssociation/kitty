@@ -19,6 +19,7 @@ BuildRequires:  librsync-devel
 BuildRequires:  pkgconfig(gl)
 BuildRequires:  fontconfig-devel
 BuildRequires:  freetype-devel
+BuildRequires:  golang
 BuildRequires:  pkgconfig(harfbuzz)
 BuildRequires:  pkgconfig(lcms2)
 BuildRequires:  pkgconfig(openssl)
