@@ -14,7 +14,7 @@ Source0: https://github.com/kovidgoyal/kitty/releases/download/v%{version}/kitty
 # export GOPATH=$(pwd)/.godeps
 # go mod download
 # tar cJf ../../kitty-0.32.2.tar-go-vendor.xz .godeps
-Source1:        kitty-%{version}-go-vendor.tar.gz
+Source1:        kitty-%{version}-go-vendor.tar.xz
 
 BuildRequires:  python-devel
 BuildRequires:  python-sphinx
