@@ -58,7 +58,7 @@ License:        GPLv3
 Documentation for the kitty terminal emulator
 
 %prep
-#%autosetup -S git -a1
+#autosetup -S git -a1
 %autosetup -p1
 
 %build
