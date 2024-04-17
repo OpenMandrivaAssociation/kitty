@@ -16,6 +16,7 @@ Source0: https://github.com/kovidgoyal/kitty/releases/download/v%{version}/kitty
 # tar cJf ../../kitty-0.32.2.tar-go-vendor.xz .godeps
 #Source1:        kitty-%{version}-go-vendor.tar.xz
 
+BuildRequires:  git
 BuildRequires:  python-devel
 BuildRequires:  python-sphinx
 BuildRequires:  python3dist(sphinx-copybutton)
