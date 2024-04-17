@@ -3,7 +3,7 @@
 
 Name: kitty
 Summary: Fast, featureful, GPU based terminal emulator
-Version:	0.32.2
+Version:	0.34.0
 Release:	1
 Group: System/X11
 License: GPLv3
@@ -14,8 +14,9 @@ Source0: https://github.com/kovidgoyal/kitty/releases/download/v%{version}/kitty
 # export GOPATH=$(pwd)/.godeps
 # go mod download
 # tar cJf ../../kitty-0.32.2.tar-go-vendor.xz .godeps
-Source1:        kitty-%{version}-go-vendor.tar.xz
+#Source1:        kitty-%{version}-go-vendor.tar.xz
 
+BuildRequires:  git
 BuildRequires:  python-devel
 BuildRequires:  python-sphinx
 BuildRequires:  python3dist(sphinx-copybutton)
@@ -41,6 +42,8 @@ BuildRequires:	pkgconfig(xkbcommon-x11)
 BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(libcanberra)
 BuildRequires:  pkgconfig(libxxhash)
+BuildRequires:  pkgconfig(simde)
+BuildRequires:  ncurses
 
 %description
 Kitty supports modern terminal features like: graphics, unicode,
@@ -58,7 +61,8 @@ License:        GPLv3
 Documentation for the kitty terminal emulator
 
 %prep
-%autosetup -S git -a1
+#autosetup -S git -a1
+%autosetup -p1
 
 %build
 #export CC=%{__cc}
@@ -84,6 +88,7 @@ cp -a linux-package/* %{buildroot}/usr
 %{_datadir}/terminfo/x/xterm-kitty
 %{_mandir}/man1/%{name}.1.*
 %{_mandir}/man5/kitty.conf.5.*
+%{_mandir}/man1/kitten*
 
 %files doc
 %doc LICENSE *.md *.rst *.asciidoc
