@@ -88,6 +88,7 @@ cp -a linux-package/* %{buildroot}/usr
 %{_datadir}/terminfo/x/xterm-kitty
 %{_mandir}/man1/%{name}.1.*
 %{_mandir}/man5/kitty.conf.5.*
+%{_mandir}/man1/kitten*
 
 %files doc
 %doc LICENSE *.md *.rst *.asciidoc
