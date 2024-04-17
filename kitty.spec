@@ -42,6 +42,7 @@ BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(libcanberra)
 BuildRequires:  pkgconfig(libxxhash)
 BuildRequires:  pkgconfig(simde)
+BuildRequires:  pkgconfig(ncurses)
 
 %description
 Kitty supports modern terminal features like: graphics, unicode,
