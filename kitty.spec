@@ -72,7 +72,7 @@ Documentation for the kitty terminal emulator
 # The problem it causes shows up in the fact that the kitty.conf file is
 # not generated although the app runs. Debug rpms are still produced.
 
-%{__python3} setup.py linux-package  --libdir-name %{_lib} 
+%{__python3} setup.py linux-package  --libdir-name %{_lib} --verbose
 
 %install
 install -d %{buildroot}/usr
