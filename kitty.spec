@@ -24,6 +24,7 @@ BuildRequires:  python3dist(sphinx-inline-tabs)
 BuildRequires:  imagemagick-devel
 BuildRequires:  librsync-devel
 BuildRequires:  pkgconfig(gl)
+BuildRequires:  fontconfig
 BuildRequires:  fontconfig-devel
 BuildRequires:  freetype-devel
 BuildRequires:  golang
