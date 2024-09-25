@@ -15,6 +15,7 @@ Source0: https://github.com/kovidgoyal/kitty/releases/download/v%{version}/kitty
 # go mod download
 # tar cJf ../../kitty-0.32.2.tar-go-vendor.xz .godeps
 #Source1:        kitty-%{version}-go-vendor.tar.xz
+Source1:  https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/NerdFontsSymbolsOnly.tar.xz
 
 BuildRequires:  git
 BuildRequires:  python-devel
@@ -64,6 +65,8 @@ Documentation for the kitty terminal emulator
 %prep
 #autosetup -S git -a1
 %autosetup -p1
+mkdir fonts
+tar -xf %{SOURCE1} -C fonts 
 
 %build
 #export CC=%{__cc}
