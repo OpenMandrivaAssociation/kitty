@@ -3,7 +3,7 @@
 
 Name: kitty
 Summary: Fast, featureful, GPU based terminal emulator
-Version:	0.37.0
+Version:	0.38.0
 Release:	1
 Group: System/X11
 License: GPLv3
@@ -15,7 +15,7 @@ Source0: https://github.com/kovidgoyal/kitty/releases/download/v%{version}/kitty
 # go mod download
 # tar cJf ../../kitty-0.32.2.tar-go-vendor.xz .godeps
 #Source1:        kitty-%{version}-go-vendor.tar.xz
-Source1:  https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/NerdFontsSymbolsOnly.tar.xz
+Source1:  https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/NerdFontsSymbolsOnly.tar.xz
 
 BuildRequires:  git
 BuildRequires:  python-devel
