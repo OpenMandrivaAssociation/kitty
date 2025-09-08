@@ -63,8 +63,6 @@ Summary:        The terminfo file for Kitty Terminal
 License:        GPL-3.0-only
 BuildArch:      noarch
 
-Requires:       ncurses-base
-
 %description    terminfo
 Cross-platform, fast, feature full, GPU based terminal emulator.
 
