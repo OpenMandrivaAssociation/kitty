@@ -3,7 +3,7 @@
 
 Name: kitty
 Summary: Fast, featureful, GPU based terminal emulator
-Version:	0.38.0
+Version:	0.42.2
 Release:	1
 Group: System/X11
 License: GPLv3
@@ -15,7 +15,8 @@ Source0: https://github.com/kovidgoyal/kitty/releases/download/v%{version}/kitty
 # go mod download
 # tar cJf ../../kitty-0.32.2.tar-go-vendor.xz .godeps
 #Source1:        kitty-%{version}-go-vendor.tar.xz
-Source1:  https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/NerdFontsSymbolsOnly.tar.xz
+Source1:  https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdFontsSymbolsOnly.tar.xz
+Source2:  %{name}-%{version}-vendor.tar.gz
 
 BuildRequires:  git
 BuildRequires:  python-devel
@@ -55,45 +56,99 @@ bracketed paste.
 Kitty has a framework for "kittens", small terminal programs that can be used
 to extend its functionality.
 
-%package doc
-Summary:        Documentation for the kitty terminal emulator
-License:        GPLv3
+# terminfo package
+%package        terminfo
+Summary:        The terminfo file for Kitty Terminal
+License:        GPL-3.0-only
+BuildArch:      noarch
 
-%description doc
-Documentation for the kitty terminal emulator
+Requires:       ncurses-base
+
+%description    terminfo
+Cross-platform, fast, feature full, GPU based terminal emulator.
+
+The terminfo file for Kitty Terminal.
+
+# shell-integration package
+%package        shell-integration
+Summary:        Shell integration scripts for %{name}
+License:        GPL-3.0-only AND MIT
+BuildArch:      noarch
+
+Recommends:     %{name}-kitten
+
+%description    shell-integration
+%{summary}.
+
+%package        doc
+Summary:        Documentation for %{name}
+License:        GPL-3.0-only AND MIT
+BuildArch:      noarch
+
+BuildRequires:  python3dist(sphinx)
+
+%description    doc
+This package contains the documentation for %{name}.
+
 
 %prep
 #autosetup -S git -a1
 %autosetup -p1
 mkdir fonts
-tar -xf %{SOURCE1} -C fonts 
+tar -xf %{SOURCE1} -C fonts
+tar -xf %{S:2}
 
 %build
-#export CC=%{__cc}
-# The --debug option has been removed as it caused 
-# the app launcher to be improperly linked.
-# The problem it causes shows up in the fact that the kitty.conf file is
-# not generated although the app runs. Debug rpms are still produced.
+export CC=%{__cc}
 
-%{__python3} setup.py linux-package  --libdir-name %{_lib} --verbose
+sed -i 's!-pedantic-errors -Werror!!g' setup.py
+%__python3 setup.py linux-package --debug \
+	--libdir-name %{_lib} \
+	--update-check-interval=0
 
 %install
 install -d %{buildroot}/usr
 cp -a linux-package/* %{buildroot}/usr
 
+
+%{buildroot}%{_bindir}/kitten __complete__ setup bash | \
+    install -Dm644 /dev/stdin %{buildroot}%{_datadir}/bash-completion/completions/kitty
+
+%{buildroot}%{_bindir}/kitten __complete__ setup zsh | \
+    install -Dm644 /dev/stdin  %{buildroot}%{_datadir}/zsh/site-functions/_kitty
+
+%{buildroot}%{_bindir}/kitten __complete__ setup fish | \
+    install -Dm644 /dev/stdin %{buildroot}%{_datadir}/fish/vendor_completions.d/kitty.fish
+
+%{buildroot}%{_bindir}/kitty \
+    +runpy 'from kitty.config import *; print(commented_out_default_config())' \
+    | install -Dm644 /dev/stdin %{buildroot}%{_datadir}/kitty/kitty.conf.default
+
 %files
+%license LICENSE
 %{_bindir}/%{name}
 %{_bindir}/kitten
 %{_libdir}/%{name}
+%exclude %{_libdir}/%{name}/shell-integration
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/applications/kitty-open.desktop
-%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
-%{_iconsdir}/hicolor/scalable/apps/kitty.svg
-%{_datadir}/terminfo/x/xterm-kitty
-%{_mandir}/man1/%{name}.1.*
-%{_mandir}/man5/kitty.conf.5.*
-%{_mandir}/man1/kitten*
+%{_datadir}/icons/hicolor/*/*/*.{png,svg}
+%{_mandir}/man{1,5}/*.{1,5}*
+
+%files terminfo
+%license LICENSE
+%{_datadir}/terminfo/x/xterm-%{name}
+
+%files shell-integration
+%license LICENSE
+%{_libdir}/%{name}/shell-integration/
+%{_datadir}/bash-completion/completions/kitty
+%{_datadir}/fish/vendor_completions.d/kitty.fish
+%{_datadir}/kitty/kitty.conf.default
+%{_datadir}/zsh/site-functions/_kitty
 
 %files doc
-%doc LICENSE *.md *.rst *.asciidoc
-%{_docdir}/kitty/html
+%license LICENSE
+%doc *.md *.rst *.asciidoc
+%{_docdir}/%{name}/html/
+%dir %{_docdir}/%{name}
