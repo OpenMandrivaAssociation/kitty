@@ -1,4 +1,3 @@
 sources:
-  kitty-0.43.1.tar.xz: 1b61f7467d7670d576926fb6eb3fe4e639d6d532
-  kitty-0.43.1-vendor.tar.gz: 82744a0f18e043f589eb4055009ed46876de01e6
-  NerdFontsSymbolsOnly.tar.xz: f89860dfef9348e0ee32c1663feccb896a4c1584
+  kitty-0.44.0-vendor.tar.gz: e50ce73135312cb10e23c02a4b07600df0a7138e
+  kitty-0.44.0.tar.xz: ebe6de8bd10fe7b1b15b389bcdd58f432da40959
