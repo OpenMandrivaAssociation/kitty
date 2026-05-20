@@ -15,7 +15,6 @@ URL: https://github.com/kovidgoyal/kitty
 Source0: https://github.com/kovidgoyal/kitty/releases/download/v%{version}/kitty-%{version}.tar.xz
 Source1:  https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdFontsSymbolsOnly.tar.xz
 Source2:  %{name}-%{version}-vendor.tar.xz
-Source3:  %{name}.rpmlintrc
 
 BuildRequires:  git
 BuildRequires:  pkgconfig(python)
