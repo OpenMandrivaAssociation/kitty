@@ -15,18 +15,18 @@ URL: https://github.com/kovidgoyal/kitty
 Source0: https://github.com/kovidgoyal/kitty/releases/download/v%{version}/kitty-%{version}.tar.xz
 Source1:  https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdFontsSymbolsOnly.tar.xz
 Source2:  %{name}-%{version}-vendor.tar.xz
+Source3:  %{name}.rpmlintrc
 
 BuildRequires:  git
-BuildRequires:  python-devel
-BuildRequires:  python-sphinx
-BuildRequires:  python3dist(sphinx-copybutton)
-BuildRequires:  python3dist(sphinx-inline-tabs)
-BuildRequires:  imagemagick-devel
-BuildRequires:  librsync-devel
+BuildRequires:  pkgconfig(python)
+BuildRequires:  python%{pyver}dist(sphinx)
+BuildRequires:  python%{pyver}dist(sphinx-copybutton)
+BuildRequires:  python%{pyver}dist(sphinx-inline-tabs)
+BuildRequires:  pkgconfig(ImageMagick)
+BuildRequires:  %{_lib}rsync-devel
 BuildRequires:  pkgconfig(gl)
-BuildRequires:  fontconfig
-BuildRequires:  fontconfig-devel
-BuildRequires:  freetype-devel
+BuildRequires:  pkgconfig(fontconfig)
+BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  golang
 BuildRequires:  pkgconfig(harfbuzz)
 BuildRequires:  pkgconfig(lcms2)
@@ -44,7 +44,7 @@ BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(libcanberra)
 BuildRequires:  pkgconfig(libxxhash)
 BuildRequires:  pkgconfig(simde)
-BuildRequires:  ncurses
+BuildRequires:  pkgconfig(ncurses)
 BuildRequires:  pkgconfig(cairo-fc)
 
 Requires:	%{name}-shell-integration
@@ -61,16 +61,13 @@ to extend its functionality.
 %package        terminfo
 Summary:        The terminfo file for Kitty Terminal
 License:        GPL-3.0-only
-BuildArch:      noarch
 
 %description    terminfo
-Cross-platform, fast, feature full, GPU based terminal emulator.
-The terminfo file for Kitty Terminal.
+%{summary}.
 
 %package        shell-integration
 Summary:        Shell integration scripts for %{name}
 License:        GPL-3.0-only AND MIT
-BuildArch:      noarch
 
 %description    shell-integration
 %{summary}.
@@ -79,10 +76,9 @@ BuildArch:      noarch
 Summary:        Documentation for %{name}
 License:        GPL-3.0-only AND MIT
 BuildArch:      noarch
-BuildRequires:  python3dist(sphinx)
 
 %description    doc
-This package contains the documentation for %{name}.
+%{summary}.
 
 
 %prep
@@ -103,7 +99,6 @@ sed -i 's!-pedantic-errors -Werror!!g' setup.py
 install -d %{buildroot}/usr
 cp -a linux-package/* %{buildroot}/usr
 
-
 %{buildroot}%{_bindir}/kitten __complete__ setup bash | \
     install -Dm644 /dev/stdin %{buildroot}%{_datadir}/bash-completion/completions/kitty
 
@@ -123,6 +118,7 @@ cp -a linux-package/* %{buildroot}/usr
 %{_bindir}/kitten
 %{_libdir}/%{name}
 %exclude %{_libdir}/%{name}/shell-integration
+%exclude %{_libdir}/%{name}/terminfo
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/applications/kitty-open.desktop
 %{_datadir}/icons/hicolor/*/*/*.{png,svg}
@@ -131,6 +127,7 @@ cp -a linux-package/* %{buildroot}/usr
 %files terminfo
 %license LICENSE
 %{_datadir}/terminfo/x/xterm-%{name}
+%{_libdir}/%{name}/terminfo
 
 %files shell-integration
 %license LICENSE
