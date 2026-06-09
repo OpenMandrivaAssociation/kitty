@@ -47,6 +47,7 @@ BuildRequires:  pkgconfig(libxxhash)
 BuildRequires:  pkgconfig(simde)
 BuildRequires:  pkgconfig(ncurses)
 BuildRequires:  pkgconfig(cairo-fc)
+BuildRequires:	ncurses
 
 Requires:	%{name}-shell-integration
 Requires:	%{name}-terminfo
