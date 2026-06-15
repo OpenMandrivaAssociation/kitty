@@ -3,7 +3,7 @@
 
 Name: kitty
 Summary: Fast, featureful, GPU based terminal emulator
-Version:	0.47.3
+Version:	0.47.4
 Release:	1
 Group: Terminals
 License: GPL-3.0-only
