@@ -1,14 +1,15 @@
 %define _empty_manifest_terminate_build 0
 %global __python %{__python3}
+%global debug_package %{nil}
 
 Name: kitty
 Summary: Fast, featureful, GPU based terminal emulator
-Version:	0.47.2
-Release:	1
+Version:	0.47.4
+Release:	2
 Group: Terminals
 License: GPL-3.0-only
 URL: https://github.com/kovidgoyal/kitty
-Source0: https://github.com/kovidgoyal/kitty/releases/download/v%{version}/kitty-%{version}.tar.xz
+Source0: https://github.com/kovidgoyal/kitty/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source1:  https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdFontsSymbolsOnly.tar.xz
 ### Go vendor source for kitty
 # from within the source tree run the following:
@@ -19,16 +20,22 @@ Source1:  https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdF
 Source2:  %{name}-%{version}-vendor.tar.xz
 
 BuildRequires:  git
+BuildRequires:  make
+BuildRequires:  ncurses
+BuildRequires:  golang
+BuildRequires:  %{_lib}rsync-devel
 BuildRequires:  pkgconfig(python)
+BuildRequires:  python%{pyver}dist(furo)
+BuildRequires:  python%{pyver}dist(matplotlib)
 BuildRequires:  python%{pyver}dist(sphinx)
+BuildRequires:  python%{pyver}dist(sphinxext-opengraph)
+BuildRequires:  python%{pyver}dist(sphinx-autobuild)
 BuildRequires:  python%{pyver}dist(sphinx-copybutton)
 BuildRequires:  python%{pyver}dist(sphinx-inline-tabs)
 BuildRequires:  pkgconfig(ImageMagick)
-BuildRequires:  %{_lib}rsync-devel
 BuildRequires:  pkgconfig(gl)
 BuildRequires:  pkgconfig(fontconfig)
 BuildRequires:  pkgconfig(freetype2)
-BuildRequires:  golang
 BuildRequires:  pkgconfig(harfbuzz)
 BuildRequires:  pkgconfig(lcms2)
 BuildRequires:  pkgconfig(openssl)
@@ -47,7 +54,6 @@ BuildRequires:  pkgconfig(libxxhash)
 BuildRequires:  pkgconfig(simde)
 BuildRequires:  pkgconfig(ncurses)
 BuildRequires:  pkgconfig(cairo-fc)
-BuildRequires:	ncurses
 
 Requires:	%{name}-shell-integration
 Requires:	%{name}-terminfo
@@ -91,11 +97,8 @@ tar -xf %{S:2}
 
 %build
 export CC=%{__cc}
-
-sed -i 's!-pedantic-errors -Werror!!g' setup.py
-%__python3 setup.py linux-package --debug \
-	--libdir-name %{_lib} \
-	--update-check-interval=0
+sed -i "s|'lib'|'%{_lib}'|g" setup.py
+make linux-package
 
 %install
 install -d %{buildroot}/usr
