@@ -1,10 +1,11 @@
 %define _empty_manifest_terminate_build 0
 %global __python %{__python3}
+%global debug_package %{nil}
 
 Name: kitty
 Summary: Fast, featureful, GPU based terminal emulator
 Version:	0.47.4
-Release:	1
+Release:	2
 Group: Terminals
 License: GPL-3.0-only
 URL: https://github.com/kovidgoyal/kitty
@@ -96,11 +97,8 @@ tar -xf %{S:2}
 
 %build
 export CC=%{__cc}
-
-sed -i 's!-pedantic-errors -Werror!!g' setup.py
-%__python3 setup.py linux-package --debug \
-	--libdir-name %{_lib} \
-	--update-check-interval=0
+sed -i "s|'lib'|'%{_lib}'|g" setup.py
+make linux-package
 
 %install
 install -d %{buildroot}/usr
