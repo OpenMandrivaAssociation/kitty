@@ -4,18 +4,18 @@
 
 Name: kitty
 Summary: Fast, featureful, GPU based terminal emulator
-Version:	0.48.1
+Version:	0.48.2
 Release:	1
 Group: Terminals
 License: GPL-3.0-only
 URL: https://github.com/kovidgoyal/kitty
-Source0: https://github.com/kovidgoyal/kitty/archive/refs/tags/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0: https://github.com/kovidgoyal/kitty/releases/download/v%{version}/%{name}-%{version}.tar.xz
 Source1:  https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdFontsSymbolsOnly.tar.xz
 ### Go vendor source for kitty
 # from within the source tree run the following:
 # go mod vendor
 # compress the resulting vendor directory and name according to the source seen below
-# tar -cJvf kitty-0.48.1-vendor.tar.xz vendor
+# tar -cJvf kitty-0.48.2-vendor.tar.xz vendor
 # place the vendored archive alongside the original source archive.
 Source2:  %{name}-%{version}-vendor.tar.xz
 
