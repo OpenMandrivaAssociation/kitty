@@ -4,7 +4,7 @@
 
 Name: kitty
 Summary: Fast, featureful, GPU based terminal emulator
-Version:	0.48.2
+Version:	0.49.2
 Release:	1
 Group: Terminals
 License: GPL-3.0-only
@@ -15,7 +15,7 @@ Source1:  https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdF
 # from within the source tree run the following:
 # go mod vendor
 # compress the resulting vendor directory and name according to the source seen below
-# tar -cJvf kitty-0.48.2-vendor.tar.xz vendor
+# tar -cJvf kitty-VERSION-vendor.tar.xz vendor
 # place the vendored archive alongside the original source archive.
 Source2:  %{name}-%{version}-vendor.tar.xz
 
@@ -24,14 +24,13 @@ BuildRequires:  make
 BuildRequires:  ncurses
 BuildRequires:  golang
 BuildRequires:  %{_lib}rsync-devel
-BuildRequires:  pkgconfig(python)
+BuildRequires:  pkgconfig(python3)
 BuildRequires:  python%{pyver}dist(furo)
 BuildRequires:  python%{pyver}dist(matplotlib)
 BuildRequires:  python%{pyver}dist(sphinx)
 BuildRequires:  python%{pyver}dist(sphinxext-opengraph)
-BuildRequires:  python%{pyver}dist(sphinx-autobuild)
 BuildRequires:  python%{pyver}dist(sphinx-copybutton)
-BuildRequires:  python%{pyver}dist(sphinx-inline-tabs)
+BuildRequires:  python%{pyver}dist(sphinx-design)
 BuildRequires:  pkgconfig(ImageMagick)
 BuildRequires:  pkgconfig(gl)
 BuildRequires:  pkgconfig(fontconfig)
