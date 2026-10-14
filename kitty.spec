@@ -22,6 +22,7 @@ Source2:  %{name}-%{version}-vendor.tar.xz
 BuildRequires:  git
 BuildRequires:  make
 BuildRequires:  ncurses
+BuildRequires:  shader-slang
 BuildRequires:  golang
 BuildRequires:  %{_lib}rsync-devel
 BuildRequires:  pkgconfig(python3)
