@@ -18,6 +18,9 @@ Source1:  https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdF
 # tar -cJvf kitty-VERSION-vendor.tar.xz vendor
 # place the vendored archive alongside the original source archive.
 Source2:  %{name}-%{version}-vendor.tar.xz
+# LLVM 23 spirv-opt hits "ID overflow" while slangc links the cell shaders.
+# slangc -O0 does not run spirv-opt.
+Patch0: kitty-spirv-o0.patch
 
 BuildRequires:  git
 BuildRequires:  make

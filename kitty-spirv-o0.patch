@@ -1,0 +1,13 @@
+--- a/kitty/shaders/slang.py
++++ b/kitty/shaders/slang.py
+@@ -668,7 +668,9 @@
+ 
+ def commands_to_compile_to_spirv(sources: dict[str, SlangFile], build_dir: str, dest_dir: str, built_files: list[str]) -> Iterator[Command]:
+     # glsl 450 is vulkan 1.1 and spirv 1.3 released 2008
+-    base_cmd = ['-target', 'spirv', '-profile', 'glsl_450', '-capability', 'vk_mem_model', '-fvk-use-entrypoint-name']
++    # -O0 skips spirv-opt. spirv-tools from LLVM 23 reports ID overflow on the
++    # cell shader specializations, and slangc runs that optimizer by default.
++    base_cmd = ['-O0', '-target', 'spirv', '-profile', 'glsl_450', '-capability', 'vk_mem_model', '-fvk-use-entrypoint-name']
+     for base_dest, base_build, slang_module, scmd, sfile in iter_entry_point_shaders(sources, build_dir, dest_dir):
+         for x in sfile.specializations:
+             cmd = list(scmd)
