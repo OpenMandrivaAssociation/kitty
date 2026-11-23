@@ -4,7 +4,7 @@
 
 Name: kitty
 Summary: Fast, featureful, GPU based terminal emulator
-Version:	0.49.2
+Version:	0.51.0
 Release:	1
 Group: Terminals
 License: GPL-3.0-only
@@ -148,6 +148,6 @@ cp -a linux-package/* %{buildroot}/usr
 
 %files doc
 %license LICENSE
-%doc *.md *.rst *.asciidoc
+%doc docs *.md *.asciidoc
 %{_docdir}/%{name}/html/
 %dir %{_docdir}/%{name}
